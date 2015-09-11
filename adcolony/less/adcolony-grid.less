@@ -1,0 +1,41 @@
+//
+// Grid system
+// --------------------------------------------------
+
+
+// Container widths
+//
+// Set the container width, and override it for fixed navbars in media queries.
+
+.container {
+  .adc-container-fixed();
+  width: @container-adc;
+  .inner-container {
+    .adc-inner-container();
+  }
+}
+
+
+// Row
+//
+// Rows contain and clear the floats of your columns.
+
+.row {
+  .adc-make-row();
+}
+
+
+// Columns
+//
+// Common styles for small and large grid columns
+
+.adc-make-grid-columns();
+
+
+// The only grid...
+.make-grid(adc);
+
+
+.row-full {
+  .adc-make-row-full()
+}

@@ -1,0 +1,68 @@
+// AdColony Grid system
+//
+// Overriding bootstrap grid methods and classes, also adding new classes
+
+// Centered container element - Overriding the default container-fixed method
+.adc-container-fixed(@gutter: @grid-gutter-width, @padding: @container-padding) {
+  margin-right: auto;
+  margin-left: auto;  
+  padding-left:  floor(@padding);
+  padding-right: ceil(@padding);
+  &:extend(.clearfix all);
+}
+
+// An optional inner container that will preserve the grid alignment with any rows below it
+.adc-inner-container(@gutter: @grid-gutter-width, @padding: (@container-padding / 2)) {
+  margin: @padding;
+  .row {
+    margin-left: (@padding - @gutter);
+    margin-right: (@padding - @gutter);
+    &:extend(.clearfix all);
+  }
+}
+
+// Creates a wrapper for a series of columns
+.adc-make-row(@overlap: @grid-gutter-width) {
+  margin-left:  -@grid-gutter-width;
+  margin-right: -@grid-gutter-width;
+  padding-left: @grid-gutter-width;
+  padding-right: @grid-gutter-width;
+  &:extend(.clearfix all);
+}
+
+// Creates a full container wide row wrapper that will nest other rows and preserve the grid structure
+// Might not be necessary...
+.adc-make-row-full(@padding: @container-padding, @gutter: @grid-gutter-width) {
+  margin-left:  -@padding;
+  margin-right: -@padding;
+  &:extend(.clearfix all);
+  .row {
+    margin-left: (@padding - @gutter);
+    margin-right: (@padding - @gutter);
+    &:extend(.clearfix all);
+  }
+}
+
+
+.adc-make-grid-columns() {
+  // Common styles for all sizes of grid columns, widths 1-12
+  .col(@index) { // initial
+    @item: ~".col-xs-@{index}, .col-sm-@{index}, .col-md-@{index}, .col-lg-@{index}";
+    .col((@index + 1), @item);
+  }
+  .col(@index, @list) when (@index =< @grid-columns) { // general; "=<" isn't a typo
+    @item: ~".col-adc-@{index}";
+    .col((@index + 1), ~"@{list}, @{item}");
+  }
+  .col(@index, @list) when (@index > @grid-columns) { // terminal
+    @{list} {
+      position: relative;
+      // Prevent columns from collapsing when empty
+      min-height: 1px;
+      // Inner gutter via padding
+      padding-left:  0;
+      padding-right: @grid-gutter-width;
+    }
+  }
+  .col(1); // kickstart it
+}

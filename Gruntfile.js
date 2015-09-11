@@ -384,6 +384,10 @@ module.exports = function (grunt) {
       less: {
         files: 'less/**/*.less',
         tasks: 'less'
+      },
+      adcolony: {
+        files: 'adcolony/**/*.less',
+        tasks: 'less:compileAdColony'
       }
     },
 
@@ -499,7 +503,7 @@ module.exports = function (grunt) {
 
   // Default task.
   // grunt.registerTask('default', ['clean:dist', 'copy:fonts', 'test']);
-  grunt.registerTask('default', ['clean:adcolony', 'less:compileAdColony']);
+  grunt.registerTask('default', ['clean:adcolony', 'less:compileAdColony', 'watch:adcolony']);
 
   // AdColony tasks:
   grunt.registerTask('adcolony', ['clean:adcolony', 'less:compileAdColony', 'cssmin:minifyAdColony']);
