@@ -52,7 +52,8 @@ module.exports = function (grunt) {
     // Task configuration.
     clean: {
       dist: 'dist',
-      docs: 'docs/dist'
+      docs: 'docs/dist',
+      adcolony: 'adcolony/css'
     },
 
     jshint: {
@@ -175,7 +176,18 @@ module.exports = function (grunt) {
         },
         src: 'less/theme.less',
         dest: 'dist/css/<%= pkg.name %>-theme.css'
-      }
+      },
+      compileAdColony: {
+        options: {
+          strictMath: true,
+          sourceMap: true,
+          outputSourceFiles: true,
+          sourceMapURL: 'adcolony.css.map',
+          sourceMapFilename: 'adcolony/css/adcolony.css.map'
+        },
+        src: 'adcolony/less/adcolony-bootstrap.less',
+        dest: 'adcolony/css/adcolony.css'
+      },
     },
 
     autoprefixer: {
@@ -241,6 +253,10 @@ module.exports = function (grunt) {
       minifyTheme: {
         src: 'dist/css/<%= pkg.name %>-theme.css',
         dest: 'dist/css/<%= pkg.name %>-theme.min.css'
+      },
+      minifyAdColony: {
+        src: 'adcolony/css/adcolony.css',
+        dest: 'adcolony/css/adcolony.min.css'
       },
       docs: {
         src: [
@@ -482,7 +498,11 @@ module.exports = function (grunt) {
   grunt.registerTask('dist', ['clean:dist', 'dist-css', 'copy:fonts', 'dist-js']);
 
   // Default task.
-  grunt.registerTask('default', ['clean:dist', 'copy:fonts', 'test']);
+  // grunt.registerTask('default', ['clean:dist', 'copy:fonts', 'test']);
+  grunt.registerTask('default', ['clean:adcolony', 'less:compileAdColony']);
+
+  // AdColony tasks:
+  grunt.registerTask('adcolony', ['clean:adcolony', 'less:compileAdColony', 'cssmin:minifyAdColony']);
 
   // Version numbering task.
   // grunt change-version-number --oldver=A.B.C --newver=X.Y.Z
