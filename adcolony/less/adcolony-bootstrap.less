@@ -1,7 +1,12 @@
+// TODO: this works.. but perhaps we should just create an 'adcolony' folder under the main 'less' folder and then directly manipulate
+// The main bootstrap.less file as we need
 // Bootstrap files (including only some since we're replacing items like the grid ourselves)
 // Core variables and mixins
 @import "../../less/variables.less";
 @import "../../less/mixins.less";
+/* AdColony custom variables and mixins */
+@import "adcolony-variables.less";
+@import "adcolony-mixins.less";
 
 // Reset and dependencies
 @import "../../less/normalize.less";
@@ -50,7 +55,9 @@
 @import "../../less/responsive-utilities.less";
 
 /* AdColony custom less styles */
-@import "adcolony-variables.less";
-@import "adcolony-mixins.less";
 @import "adcolony-grid.less";
 @import "adcolony-core.less";
+@import "adcolony-forms.less";
+@import "adcolony-buttons.less";
+@import "adcolony-modal.less";
+@import "adcolony-type.less";

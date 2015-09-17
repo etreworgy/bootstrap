@@ -1,0 +1,62 @@
+// AdColony button overrides
+@btnPaddingBase: 4px;
+.btn {
+  font-family: Freight;
+  .button-size((@btnPaddingBase * 2); (@btnPaddingBase * 4); @font-size-large; @line-height-large; @btn-border-radius-base);
+  padding-top: 6px; // Make the top padding smaller, font seems off-center otherwise
+}
+
+// Really only 2 supported button sizes: standard and small
+.btn-sm {
+  .button-size((@btnPaddingBase * 1); (@btnPaddingBase * 3); @font-size-base; @line-height-base; @btn-border-radius-small);
+  padding-top: 2px;
+}
+
+
+.btn-gray {
+  color: @gray-lighter; 
+  background-color: @white;
+  border-color: @gray-lighter;
+
+  &:active,
+  &.active,
+  &:hover,
+  &:focus,
+  &.focus {
+    color: @white; 
+    background-color: @brand-primary;
+    border-color: @white;
+  }
+}
+
+.btn-empty {
+  color: @gray-lighter; 
+  background-color: transparent;
+  border-color: transparent;
+
+  &:active,
+  &.active,
+  &:hover,
+  &:focus,
+  &.focus {
+    color: @gray-lighter; 
+    background-color: rgba(255, 255, 255, 0.5);
+    border-color: transparent;
+  }
+}
+
+.btn-primary-inverse {
+  color: @btn-primary-bg; 
+  background-color: @white;
+  border-color: @white;
+
+  &:active,
+  &.active,
+  &:hover,
+  &:focus,
+  &.focus {
+    color: @btn-primary-bg; 
+    background-color: @white;
+    border-color: @btn-primary-bg;
+  }
+}

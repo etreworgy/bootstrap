@@ -1,17 +1,113 @@
-//== Components
+// AC: font-family mixin
+.font-face (@family, @file-base, @weight: normal, @style: normal) {
+  @font-face {
+    font-family: @family;
+    src:  url("@{file-base}.eot");
+    src:  url("@{file-base}.eot?#iefix") format("embedded-opentype"),
+        url("@{file-base}.woff") format("woff"),
+        url("@{file-base}.ttf") format("truetype"),
+        url("@{file-base}.otf") format("opentype");
+    font-weight: @weight;
+    font-style: @style;
+  }
+}
+
+// Lato Family - used for most content text
+.font-face("Lato",   "../fonts/Lato-Black", 900);
+.font-face("Lato",   "../fonts/Lato-BlackItalic", 900, italic);
+.font-face("Lato",   "../fonts/Lato-Bold", bold);
+.font-face("Lato",   "../fonts/Lato-BoldItalic", bold, italic);
+.font-face("Lato",   "../fonts/Lato-Regular", normal);
+.font-face("Lato",   "../fonts/Lato-Italic", normal, italic);
+.font-face("Lato",   "../fonts/Lato-Light", 300);
+.font-face("Lato",   "../fonts/Lato-LightItalic", 300, italic);
+.font-face("Lato",   "../fonts/Lato-Hairline", 100);
+.font-face("Lato",   "../fonts/Lato-HairlineItalic", 100, italic);
+// Freight - used for headers and button labels, usually in all caps
+.font-face("Freight",   "../fonts/freight-black", 900);
+.font-face("Freight",   "../fonts/freight-blackitalic", 900, italic);
+.font-face("Freight",   "../fonts/freight-bold", bold);
+.font-face("Freight",   "../fonts/freight-bolditalic", bold, italic);
+.font-face("Freight",   "../fonts/FreigSanProSem", 500);
+.font-face("Freight",   "../fonts/FreigSanProSemIt", 500, italic);
+.font-face("Freight",   "../fonts/FreigSanProMed", normal);
+.font-face("Freight",   "../fonts/FreigSanProMedIt", normal, italic);
+.font-face("Freight",   "../fonts/freight-book", 300);
+.font-face("Freight",   "../fonts/freight-bookitalic", 300, italic);
+.font-face("Freight",   "../fonts/FreigSanProLig", 100);
+.font-face("Freight",   "../fonts/FreigSanProLigIt", 100, italic);
+
+@font-family-sans-serif:  Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-family-base:        @font-family-sans-serif;
+
+@line-height-base:        1.5; // 16/13
+
+@headings-font-family:    Freight;
+
+@font-size-base:          13px;
+@font-size-large:         16px;
+@font-size-small:         11px;
+
+@font-size-h1:            24px;
+@font-size-h2:            21px;
+@font-size-h3:            16px;
+@font-size-h4:            13px;
+@font-size-h5:            11px;
+@font-size-h6:            11px;
+
+// TODO: Colors
+@white:                   #fff;
+
+//## Gray and brand colors for use across Bootstrap.
+@gray-darker:             #455864;
+@gray-dark:               #546e7a;
+@gray:                    #90a4ae;
+@gray-light:              #b0bec5;
+@gray-lighter:            #cfd8dc;
+
+@gray-lightest:           #eceff1;
+
+@brand-primary:         #51B2EF; //darken(#428bca, 6.5%); // #337ab7
+@brand-success:         #5cb85c;
+@brand-info:            #5bc0de;
+@brand-warning:         #f0ad4e;
+@brand-danger:          #d9534f;
+
+
+//== TODO: Scaffolding
+//
+//## Settings for some of the most global styles.
+
+//** Background color for `<body>`.
+@body-bg:                   #FAFBFC;
+//** Global text color on `<body>`.
+@text-color:            @gray-dark;
+
+//** Global textual link color.
+@link-color:            @brand-primary;
+//** Link hover color set via `darken()` function.
+@link-hover-color:      darken(@link-color, 15%);
+//** Link hover decoration.
+@link-hover-decoration: underline;
+
+//== TODO: Components
 //
 //## Define common padding and border radius sizes and more. Overriding padding to be on a 4px scale
-@padding-base-vertical:     8px;
-@padding-base-horizontal:   12px;
+@padding-scale:             4px;
+@padding-base-vertical:     (@padding-scale * 3);
+@padding-base-horizontal:   (@padding-scale * 3);
 
-@padding-large-vertical:    12px;
-@padding-large-horizontal:  16px;
+@padding-large-vertical:    (@padding-scale * 4);
+@padding-large-horizontal:  (@padding-scale * 4);
 
-@padding-small-vertical:    4px;
-@padding-small-horizontal:  8px;
+@padding-small-vertical:    @padding-scale;
+@padding-small-horizontal:  (@padding-scale * 2);
 
 @padding-xs-vertical:       1px;
-@padding-xs-horizontal:     4px;
+@padding-xs-horizontal:     @padding-scale;
+
+@line-height-large:         1.3333333; // extra decimals for Win 8.1 Chrome
+@line-height-small:         1.5;
 
 //== Grid system
 //
@@ -34,3 +130,88 @@
 //
 //## Define the maximum width of `.container` for different screen sizes.
 @container-adc:                (1120px + @container-padding * 2);
+
+//== TODO: Tables
+//
+//## Customizes the `.table` component with basic values, each used across all table variations.
+
+//** Padding for `<th>`s and `<td>`s.
+@table-cell-padding:            8px;
+//** Padding for cells in `.table-condensed`.
+@table-condensed-cell-padding:  5px;
+
+//** Default background color used for all tables.
+@table-bg:                      transparent;
+//** Background color used for `.table-striped`.
+@table-bg-accent:               #f9f9f9;
+//** Background color used for `.table-hover`.
+@table-bg-hover:                #f5f5f5;
+@table-bg-active:               @table-bg-hover;
+
+//** Border color for table and cell borders.
+@table-border-color:            #ddd;
+
+
+//== TODO: Buttons
+//
+//## For each of Bootstrap's buttons, define text, background and border color.
+
+@btn-font-weight:                500;  // semi-bold
+
+@btn-default-color:              #333;
+@btn-default-bg:                 @white;
+@btn-default-border:             #ccc;
+
+@btn-primary-color:              @white;
+@btn-primary-bg:                 @brand-primary;
+@btn-primary-border:             darken(@btn-primary-bg, 5%);
+
+@btn-success-color:              @white;
+@btn-success-bg:                 @brand-success;
+@btn-success-border:             darken(@btn-success-bg, 5%);
+
+@btn-info-color:                 @white;
+@btn-info-bg:                    @brand-info;
+@btn-info-border:                darken(@btn-info-bg, 5%);
+
+@btn-warning-color:              @white;
+@btn-warning-bg:                 @brand-warning;
+@btn-warning-border:             darken(@btn-warning-bg, 5%);
+
+@btn-danger-color:               @white;
+@btn-danger-bg:                  @brand-danger;
+@btn-danger-border:              darken(@btn-danger-bg, 5%);
+
+@btn-link-disabled-color:        @gray-light;
+
+// Allows for customizing button radius independently from global border radius
+@btn-border-radius-base:         40px;
+@btn-border-radius-large:        40px;
+@btn-border-radius-small:        40px;
+
+//== TODO:Type
+//
+//##
+
+//** Horizontal offset for forms and lists.
+@component-offset-horizontal: 180px;
+//** Text muted color
+@text-muted:                  @gray;
+//** Abbreviations and acronyms border color
+@abbr-border-color:           @gray-light;
+//** Headings small color
+@headings-small-color:        @gray-light;
+//** Blockquote small color
+@blockquote-small-color:      @gray-light;
+//** Blockquote font size
+@blockquote-font-size:        (@font-size-base * 1.25);
+//** Blockquote border color
+@blockquote-border-color:     @gray-lighter;
+//** Page header border color
+@page-header-border-color:    @gray-lighter;
+//** Width of horizontal description list titles
+@dl-horizontal-offset:        @component-offset-horizontal;
+//** Point at which .dl-horizontal becomes horizontal
+@dl-horizontal-breakpoint:    @grid-float-breakpoint;
+//** Horizontal line color.
+@hr-border:                   @gray-lightest;

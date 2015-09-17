@@ -1,0 +1,28 @@
+// Set up the modal to align with the grid behind it
+.adc-modal {
+  .modal-dialog {
+    width: 1280px;
+    padding-left: 80px;
+    padding-right: 80px;
+    .modal-body {
+      padding: 20px;
+    }
+  }
+
+  /* styles for the little 'x' in the top corner of the header */
+  .close {
+    color: #90A4AE;
+    opacity: .5;
+  }
+  .close:hover {
+    opacity: 1
+  }
+}
+
+.modal-open {
+  .adc-modal.modal {
+    @media (max-width: 1200px) {
+      overflow-x: scroll;
+    }
+  }
+}

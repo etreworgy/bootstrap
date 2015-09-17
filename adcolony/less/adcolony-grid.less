@@ -6,12 +6,34 @@
 // Container widths
 //
 // Set the container width, and override it for fixed navbars in media queries.
-
 .container {
   .adc-container-fixed();
   width: @container-adc;
   .inner-container {
     .adc-inner-container();
+  }
+  // Establish container style, white background with border on 3 sides and space on the bottom, flush with the top of the page
+  border: 1px solid @gray-lighter;
+  background-color: @white;
+  margin-top: floor((@padding-scale * 12));
+  margin-bottom: 100px; // TODO: determine bottom margin
+}
+
+// A bit of responsiveness - 1280 and under the container and the body become one
+@media (max-width: 1281px) {
+  .container {
+    border: none;
+  }
+
+  body {
+    background-color: @white;
+  }
+}
+
+// Hide any horizontal scroll until under 1280px (we'll never go outside of that since the grid is 1280)
+@media (min-width: 1280px) {
+  body {
+    overflow-x: hidden;
   }
 }
 
@@ -24,6 +46,14 @@
   .adc-make-row();
 }
 
+// Setup some row margin rules
+.row + .row.small-row-margin {
+  margin-top: (@padding-scale * 2);
+}
+
+.row + .row.large-row-margin {
+  margin-top: (@padding-scale * 4);
+}
 
 // Columns
 //
@@ -33,7 +63,7 @@
 
 
 // The only grid...
-.make-grid(adc);
+.make-grid(md);
 
 
 .row-full {
