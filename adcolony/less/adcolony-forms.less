@@ -2,11 +2,13 @@
 
 label {
   font-weight: normal;
+  color: @gray;
 }
 
 .radio.bold {
   label {
     font-weight: bold;
+    color: @gray-dark
   }
 }
 
@@ -15,6 +17,12 @@ input.numeric {
 }
 
 .form-control {
+  font-size: @font-size-large;
+  padding: @padding-small-vertical @padding-small-horizontal;
+  height: inherit;
+}
+
+.input-group-addon {
   font-size: @font-size-large;
   padding: @padding-small-vertical @padding-small-horizontal;
   height: inherit;
