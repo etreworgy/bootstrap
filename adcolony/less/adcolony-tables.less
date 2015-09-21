@@ -1,0 +1,40 @@
+// Styles for all AdColony tables"
+// No column or row borders
+// TH use Freight semi-bold
+// TD use standard body text
+// TR have a hover state
+.table,
+table {  
+
+  > thead,
+  > tbody,
+  > tfoot {
+    > tr {
+      th, td {
+        border: none;
+        font-size: @font-size-base;
+      }
+    }
+  }
+
+  thead {
+    th {
+      font-family: Freight;
+      font-weight: 500;
+      color: @gray-light;
+    }
+    th.sortable {
+      cursor: pointer;
+      .glyphicon-chevron-up, .glyphicon-chevron-down {
+        margin-left: 0.5em;
+      }  
+    }
+    
+  }
+
+  tbody {
+    tr.hover {
+      background: @light-blue;
+    }
+  }
+}
