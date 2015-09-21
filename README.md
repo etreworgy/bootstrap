@@ -13,6 +13,7 @@ To get started, check out <http://getbootstrap.com>!
 
 ## Table of contents
 
+* [AdColony Specifics](#adcolony-specifics)
 * [Quick start](#quick-start)
 * [Bugs and feature requests](#bugs-and-feature-requests)
 * [Documentation](#documentation)
@@ -21,6 +22,109 @@ To get started, check out <http://getbootstrap.com>!
 * [Versioning](#versioning)
 * [Creators](#creators)
 * [Copyright and license](#copyright-and-license)
+
+## AdColony Specifics
+
+This is a branch of the Bootstrap 3.3.5 project specifically for setting up AdColony's core site styles.  Follow the [Quick start](#quick-start) guide to get set up.  Once you've got the repo ready you can build all the css by running `grunt adcolony`.  The default `grunt` build option will also set up a watch task.  The rest of this section will explain the structure and key components of the adcolony css.
+
+### Directory structure 
+
+AdColony bootstrap directory structure:
+
+```
+bootstrap/
+└── adcolony/
+    ├──css/ (css compiled by grunt build)
+    ├──less/
+    │   ├── mixins/ (Adcolony specific less mixins here)
+    │   ├── adcolony-bootstrap.less (Primary less file)
+    │   ├── adcolony-buttons.less (Button overrides and styles)
+    │   ├── adcolony-core.less (Core styles)
+    │   ├── adcolony-forms.less (Form related overrides and styles)
+    │   ├── adcolony-grid.less (Grid definition)
+    │   ├── adcolony-modal.less (Modal styles)
+    │   ├── adcolony-scaffolding.less (Scaffolding/html structural styles)
+    │   ├── adcolony-type.less (Font/type related overrides and style)
+    │   └── adcolony-variables.less (Variable definitions and overrides)
+    ├── html/
+    │   └── index.html (Test file)
+    └── fonts/
+        ├── Lato-*.ttf (Primary font)
+        └── freight-*/FreigSanPro*.otf (Header font)
+```
+
+### How to use this project
+
+The different AdColony specific less files more or less mirror the structure of the main bootstrap project.  Button styles in a buttons file, form and input styles in a forms file, etc.  Any custom classes that are universal/reusable within the AdColony styling go into the 'core' file.  If you need to define a class for something specific to your project then it probably doesn't belong in here.  If it's a generic class that might have uses outside of your project then this is a good place for it.
+
+The `index.html` file under the `html` folder is for testing styles, make use of it for quick testing.
+
+### Key style rules
+
+A lot of the style rules are defined within the `adcolony-variables.less` file, the most important ones will be covered here.
+
+#### The grid
+
+The grid used is a complete override of the bootstrap grid, though it follows a similar structure and uses the same class names.  The grid rules are:
+
+* 1280px wide non-responsive container with 80px padding on left and right, top and bottom margins and a 1px border
+* 12 columns with 20px padding on the right (calculated width of each column comes out to ~73px)
+
+Other classes:
+* `.row-full` - A row that takes up the full width of the container (including the 80px padding)
+* `.inner-container` - A container that can be put inside another container and sits 40px inside of it with 40px padding
+
+Check out `adcolony-grid.less` and `mixins/adcolony-grid.less` for more details.
+
+#### Padding and Margins
+
+Most spacing is based on a 4px system.  New classes should try to set up padding and margins on that 4px scale. (Use variable `@padding-scale`)
+
+#### Font Styles and Sizes
+
+The default style uses font family is Lato, weight regular, color `@gray-dark`, and size 13px
+
+Defined Weights for Lato (all weights have an italics variation):
+* `900` - Lato Black
+* `bold` - Lato Bold
+* `normal` - Lato (*Default)
+* `300` - Lato Light
+* `100` - Lato Hairline
+
+Header styles use the Freight font family, weight semi-bold, color `@gray-dark`
+
+Defined Weights for Freight (all weights have an italics variation):
+* `900` - Freight Black
+* `bold` - Freight Bold
+* `500` - Freight Semi-Bold (*Default)
+* `normal` - Freight Medium
+* `300` - Freight Book
+* `100` - Freight Light
+
+Font sizes from smallest to largest: 
+
+* 11px (`.text-small`, used by `<h5>`)
+* 13px (standard font-size, used by `<h4>`)
+* 16px (`.text-large`, used by `<h3>`)
+* 21px (`<h2>`)
+* 24px (`<h1>`)
+
+#### Colors
+
+Gray Colors
+* `@gray-darker:             #455864;`
+* `@gray-dark:               #546e7a;`  (Default text color)
+* `@gray:                    #90a4ae;`  (`.text-muted`)
+* `@gray-light:              #b0bec5;`  (`.text-muted-light`)
+* `@gray-lighter:            #cfd8dc;`  (Used by grid border)
+* `@gray-lightest:           #eceff1;`  (Used by `<hr>`)
+
+Other Colors (Outside of primary these values haven't been locked down)
+* `@brand-primary:         #51B2EF;`
+* `@brand-success:         #66BB6A;`
+* `@brand-info:            #5bc0de;`
+* `@brand-warning:         #FFECB3;`
+* `@brand-danger:          #FF7043;`
 
 ## Quick start
 

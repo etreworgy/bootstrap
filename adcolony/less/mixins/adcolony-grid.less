@@ -33,8 +33,8 @@
 // Creates a full container wide row wrapper that will nest other rows and preserve the grid structure
 // Might not be necessary...
 .adc-make-row-full(@padding: @container-padding, @gutter: @grid-gutter-width) {
-  margin-left:  -(@padding + 1); // Plus one for the border
-  margin-right: -(@padding + 1);
+  margin-left:  (-1 * (@padding + 1)); // Plus one for the border
+  margin-right: (-1 * (@padding + 1));
   &:extend(.clearfix all);
   .row {
     margin-left: ((@padding + 1) - @gutter);
