@@ -1,41 +1,47 @@
-// AC: font-family mixin
-.font-face (@family, @file-base, @weight: normal, @style: normal) {
+// ACE: font-family mixin -- one for our otf fonts and one for ttf
+// GH 2016/01/12 -- no reason to try and include .eot or even .otf and .ttf
+// when we straight up don't have them
+.font-face-ttf (@family, @file-base, @weight, @style) {
   @font-face {
     font-family: @family;
-    src:  url("@{file-base}.eot");
-    src:  url("@{file-base}.eot?#iefix") format("embedded-opentype"),
-        url("@{file-base}.woff") format("woff"),
-        url("@{file-base}.ttf") format("truetype"),
-        url("@{file-base}.otf") format("opentype");
+    src: url("@{file-base}.ttf") format("truetype");
+    font-weight: @weight;
+    font-style: @style;
+  }
+}
+.font-face-otf (@family, @file-base, @weight, @style) {
+  @font-face {
+    font-family: @family;
+    src: url("@{file-base}.otf") format("opentype");
     font-weight: @weight;
     font-style: @style;
   }
 }
 
 // Lato Family - used for most content text
-.font-face("Lato",   "../fonts/Lato-Black", 900);
-.font-face("Lato",   "../fonts/Lato-BlackItalic", 900, italic);
-.font-face("Lato",   "../fonts/Lato-Bold", bold);
-.font-face("Lato",   "../fonts/Lato-BoldItalic", bold, italic);
-.font-face("Lato",   "../fonts/Lato-Regular", normal);
-.font-face("Lato",   "../fonts/Lato-Italic", normal, italic);
-.font-face("Lato",   "../fonts/Lato-Light", 300);
-.font-face("Lato",   "../fonts/Lato-LightItalic", 300, italic);
-.font-face("Lato",   "../fonts/Lato-Hairline", 100);
-.font-face("Lato",   "../fonts/Lato-HairlineItalic", 100, italic);
+.font-face-ttf("Lato",   "../fonts/Lato-Black", 900);
+.font-face-ttf("Lato",   "../fonts/Lato-BlackItalic", 900, italic);
+.font-face-ttf("Lato",   "../fonts/Lato-Bold", bold);
+.font-face-ttf("Lato",   "../fonts/Lato-BoldItalic", bold, italic);
+.font-face-ttf("Lato",   "../fonts/Lato-Regular", normal);
+.font-face-ttf("Lato",   "../fonts/Lato-Italic", normal, italic);
+.font-face-ttf("Lato",   "../fonts/Lato-Light", 300);
+.font-face-ttf("Lato",   "../fonts/Lato-LightItalic", 300, italic);
+.font-face-ttf("Lato",   "../fonts/Lato-Hairline", 100);
+.font-face-ttf("Lato",   "../fonts/Lato-HairlineItalic", 100, italic);
 // Freight - used for headers and button labels, usually in all caps
-.font-face("Freight",   "../fonts/freight-black", 900);
-.font-face("Freight",   "../fonts/freight-blackitalic", 900, italic);
-.font-face("Freight",   "../fonts/freight-bold", bold);
-.font-face("Freight",   "../fonts/freight-bolditalic", bold, italic);
-.font-face("Freight",   "../fonts/FreigSanProSem", 500);
-.font-face("Freight",   "../fonts/FreigSanProSemIt", 500, italic);
-.font-face("Freight",   "../fonts/FreigSanProMed", normal);
-.font-face("Freight",   "../fonts/FreigSanProMedIt", normal, italic);
-.font-face("Freight",   "../fonts/freight-book", 300);
-.font-face("Freight",   "../fonts/freight-bookitalic", 300, italic);
-.font-face("Freight",   "../fonts/FreigSanProLig", 100);
-.font-face("Freight",   "../fonts/FreigSanProLigIt", 100, italic);
+.font-face-otf("Freight",   "../fonts/freight-black", 900);
+.font-face-otf("Freight",   "../fonts/freight-blackitalic", 900, italic);
+.font-face-otf("Freight",   "../fonts/freight-bold", bold);
+.font-face-otf("Freight",   "../fonts/freight-bolditalic", bold, italic);
+.font-face-otf("Freight",   "../fonts/FreigSanProSem", 500);
+.font-face-otf("Freight",   "../fonts/FreigSanProSemIt", 500, italic);
+.font-face-otf("Freight",   "../fonts/FreigSanProMed", normal);
+.font-face-otf("Freight",   "../fonts/FreigSanProMedIt", normal, italic);
+.font-face-otf("Freight",   "../fonts/freight-book", 300);
+.font-face-otf("Freight",   "../fonts/freight-bookitalic", 300, italic);
+.font-face-otf("Freight",   "../fonts/FreigSanProLig", 100);
+.font-face-otf("Freight",   "../fonts/FreigSanProLigIt", 100, italic);
 
 @font-family-sans-serif:  Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
 @font-family-base:        @font-family-sans-serif;
