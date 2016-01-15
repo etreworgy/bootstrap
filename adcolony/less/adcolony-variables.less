@@ -1,7 +1,7 @@
 // ACE: font-family mixin -- one for our otf fonts and one for ttf
 // GH 2016/01/12 -- no reason to try and include .eot or even .otf and .ttf
 // when we straight up don't have them
-.font-face-ttf (@family, @file-base, @weight, @style) {
+.font-face-ttf (@family, @file-base, @weight: normal, @style: normal) {
   @font-face {
     font-family: @family;
     src: url("@{file-base}.ttf") format("truetype");
@@ -9,7 +9,7 @@
     font-style: @style;
   }
 }
-.font-face-otf (@family, @file-base, @weight, @style) {
+.font-face-otf (@family, @file-base, @weight: normal, @style: normal) {
   @font-face {
     font-family: @family;
     src: url("@{file-base}.otf") format("opentype");
