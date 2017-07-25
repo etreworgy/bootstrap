@@ -68,7 +68,8 @@
     "js/*.js",
     "less/**/*.less",
     "Gruntfile.js",
-    "LICENSE"
+    "LICENSE",
+    "adcolony"
   ],
   "jspm": {
     "main": "js/bootstrap",
